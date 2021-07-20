@@ -21,3 +21,65 @@ button {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+input[type='checkbox'] {
+    height: 30px;
+    width: 30px;
+}
+
+.boxesalign {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.boxesalign div {
+    display: flex;
+    align-items: center;
+}
+
+.boxesaligncenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    margin-left: 10px;
+}
+
+input[type='text'],
+select {
+    margin: 0.5rem
+}
+
+.uninputs {
+    display: flex;
+}
+
+.boxesalign div {
+    width: 110px;
+}
+
+@media only screen and (max-width:1000px) {
+    .cardwidth {
+        width: 60vw;
+    }
+    .mainpage {
+        height: 60rem;
+    }
+}
+
+@media only screen and (max-width:800px) {
+    .cardwidth {
+        width: 70vw;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    .cardwidth {
+        width: 90vw;
+    }
+    .uninputs {
+        flex-direction: column;
+    }
+}

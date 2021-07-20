@@ -4,13 +4,13 @@ import Styles from './cssmodules/all.module.css'
 
 export default function Askingpageaboutco2({handleCurrentPage}) {
     return (
-        <div class={Styles.mainpage}>
+        <div className={Styles.mainpage}>
         
 
-            <Card className="text-center" style={{backgroundColor: `rgba(255,255,255,0.7) `}}>
-  <Card.Body style={{width:"40vw"}}>
+            <Card className="text-center" style={{backgroundColor: `rgba(255,255,255,0.7)`}}>
+  <Card.Body className={Styles.cardwidth} >
     <Card.Title>Registracijos mokesčio skaičiuoklė</Card.Title>
-    <div class={Styles.buttonsflex}>
+    <div className={Styles.buttonsflex}>
     <Button onClick={()=>handleCurrentPage("no")} variant="success">Nežinau automobilio CO2</Button>
     <Button onClick={()=>handleCurrentPage("yes")} variant="success">Žinau automobilio CO2</Button>
     </div>
