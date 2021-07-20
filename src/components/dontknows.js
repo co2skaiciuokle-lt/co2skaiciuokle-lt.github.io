@@ -9,13 +9,19 @@ export default function Dontknows({ handleCurrentPage }) {
   const [knowseuro, setknowseuro] = useState("");
   const [euro, seteuro] = useState("");
   const [fee, setfee] = useState({taxes:0,c02size:0});
-  const [manual, setmanual] = useState(null);
+  const [manual, setmanual] = useState("");
   const [weight, setweight] = useState("");
   const [kw, setkw] = useState("");
   const [electric, setelectric] = useState(false);
   useEffect(() => {
-    
-    if (weight && euro && checkboxvalue) {
+
+    if(weight && euro && (checkboxvalue==='gasoline' || checkboxvalue==='diesel' || checkboxvalue==='gas') && manual!=="")
+    {
+        setfee(
+        calculatewithoutCO2(parseInt(weight),parseInt(kw), parseInt(euro), checkboxvalue,manual==1,electric==true)
+        );
+    }
+    else if (weight && euro && checkboxvalue,electric) {
       setfee(
     calculatewithoutCO2(parseInt(weight),parseInt(kw), parseInt(euro), checkboxvalue,manual==1,electric==true)
       );

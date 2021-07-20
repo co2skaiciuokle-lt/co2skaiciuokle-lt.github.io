@@ -18,8 +18,8 @@
      if (isNaN(weigth)) weigth = 0
      if (iseletric) return (0.116 * weigth - 57.147) > 0 ? (0.116 * weigth - 57.147) : 0
 
-     if (fuelType === "gasoline" && isManual) return (0.047 * weigth + 0.561 * kw + 56.621) > 0 ? (0.047 * weigth + 0.561 * kw + 56.621) : 0
-     if (fuelType === "gasoline" && !isManual) return (0.102 * weigth + 0.328 * kw + 9.481) > 0 ? ((0.102 * weigth + 0.328 * kw + 9.481)) : 0
+     if ((fuelType === "gasoline" || fuelType === "gas") && isManual) return (0.047 * weigth + 0.561 * kw + 56.621) > 0 ? (0.047 * weigth + 0.561 * kw + 56.621) : 0
+     if ((fuelType === "gasoline" || fuelType === "gas") && !isManual) return (0.102 * weigth + 0.328 * kw + 9.481) > 0 ? ((0.102 * weigth + 0.328 * kw + 9.481)) : 0
      if (fuelType === "diesel" && isManual) return (0.108 * weigth - 11.371) > 0 ? (0.108 * weigth - 11.371) : 0
      if (fuelType === "diesel" && !isManual) return (0.116 * weigth - 6.432) > 0 ? (0.116 * weigth - 6.432) : 0
 
