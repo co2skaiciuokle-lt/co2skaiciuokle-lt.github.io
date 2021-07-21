@@ -60,12 +60,15 @@ select {
     width: 110px;
 }
 
+@media only screen and (max-width:1520px) {
+    .mainpage {
+        height: 43rem;
+    }
+}
+
 @media only screen and (max-width:1000px) {
     .cardwidth {
         width: 60vw;
-    }
-    .mainpage {
-        height: 60rem;
     }
 }
 
