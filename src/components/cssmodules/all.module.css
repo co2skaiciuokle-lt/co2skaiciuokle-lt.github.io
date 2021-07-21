@@ -16,15 +16,13 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-image: url('../assets/bgpic.png');
-    background-repeat: no-repeat;
-    background-size: cover;
+    height: fit-content;
+    margin: 3rem auto;
 }
 
 input[type='checkbox'] {
-    height: 30px;
-    width: 30px;
+    height: 1.875rem;
+    width: 1.875rem;
 }
 
 .boxesalign {
@@ -37,14 +35,16 @@ input[type='checkbox'] {
     align-items: center;
 }
 
-.boxesaligncenter {
+.inputsaligncenter {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 label {
-    margin-left: 10px;
+    margin-left: 0.625rem;
 }
 
 input[type='text'],
@@ -52,33 +52,39 @@ select {
     margin: 0.5rem
 }
 
-.uninputs {
+.carSpecalign {
     display: flex;
 }
 
 .boxesalign div {
-    width: 110px;
+    width: 6.875rem;
 }
 
-@media only screen and (max-width:1520px) {
-    .mainpage {
-        height: 43rem;
-    }
+body {
+    background: url('../assets/bgpic.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
-@media only screen and (max-width:1000px) {
+.askingYears {
+    margin-top: 1.5rem;
+}
+
+@media all and (max-width:1000px) {
     .cardwidth {
         width: 60vw;
     }
 }
 
-@media only screen and (max-width:800px) {
+@media all and (max-width:800px) {
     .cardwidth {
         width: 70vw;
     }
 }
 
-@media only screen and (max-width:600px) {
+@media all and (max-width:600px) {
     .cardwidth {
         width: 90vw;
     }

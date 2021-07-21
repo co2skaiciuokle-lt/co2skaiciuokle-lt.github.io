@@ -1,21 +1,18 @@
-import React,{useState} from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import AskingPage from './components/askingpageaboutco2'
-import Dontknows from './components/dontknows'
-import Knows from './components/knows'
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import AskingPage from "./components/askingpageaboutco2";
+import DontKnows from "./components/dontknows";
+import Knows from "./components/knows";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState("")
-  const handleCurrentPage = (data)=>{
-    setCurrentPage(data)
-  }
+  const [currentPage, setCurrentPage] = useState("");
 
   return (
-   <div>
-    {currentPage==='' && <AskingPage handleCurrentPage={handleCurrentPage}/>}
-    {currentPage==='yes' && <Knows handleCurrentPage={handleCurrentPage} />  }
-    {currentPage==='no' && <Dontknows handleCurrentPage={handleCurrentPage}/>  }
-   </div>
+    <>
+      {currentPage === "" && <AskingPage handleCurrentPage={setCurrentPage} />}
+      {currentPage === "yes" && <Knows handleCurrentPage={setCurrentPage} />}
+      {currentPage === "no" && <DontKnows handleCurrentPage={setCurrentPage} />}
+    </>
   );
 }
 
