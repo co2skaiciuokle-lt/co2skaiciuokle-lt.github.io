@@ -4,42 +4,44 @@ import Styles from "./cssmodules/all.module.css";
 
 export default function CheckBoxes({handleFuelType}) {
     return (
+      <div className={Styles.container}>
         <div className={Styles.boxesalign}>
         <Form.Check
           inline
           label="Dyzelinas"
           type="checkbox"
           onChange={() => handleFuelType()}
-          id="Dyzelinas"
+          id="Diesel"
         />
         <Form.Check
           inline
           label="Benzinas"
           type="checkbox"
           onChange={() => handleFuelType()}
-          id="Benzinas"
+          id="Gasoline"
         />
         <Form.Check
           inline
           label="Dujos"
           type="checkbox"
           onChange={() => handleFuelType()}
-          id="Dujos"
+          id="Gas"
         />
         <Form.Check
           inline
           label="Etanolis"
           type="checkbox"
           onChange={() => handleFuelType()}
-          id="Etanolis"
+          id="Ethanol"
         />
         <Form.Check
           inline
           label="Elektra"
           type="checkbox"
           onChange={() => handleFuelType()}
-          id="Elektra"
+          id="Electricity"
         />
+      </div>
       </div>
     )
 }

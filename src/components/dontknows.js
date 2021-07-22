@@ -5,13 +5,11 @@ import Eurodropdown from "./eurodropdown";
 import { calculatewithoutCO2 } from "./functions/calculations";
 import CheckBoxes from "./checkBoxes";
 import GearTypeDropdown from "./geartypedropdown";
+import {FUEL_Types} from "./functions/constants"
+import {SHOW_YEARS} from "./functions/constants"
 
 export default function DontKnows({ handleCurrentPage }) {
-  const FUEL_Types = {
-    DIESEL: "diesel",
-    GAS: "gas",
-    GASOLINE: "gasoline",
-  };
+
 
   const [fuelType, setFuelType] = useState({ fuel: null, isElectric: false });
   const [knowsEuro, setKnowsEuro] = useState("");
@@ -75,19 +73,19 @@ export default function DontKnows({ handleCurrentPage }) {
   };
 
   const calculateEuro = (data) => {
-    if (data === "show") {
-      handleKnowsEuroValue("no");
+    if (data === SHOW_YEARS.SHOW) {
+      handleKnowsEuroValue(SHOW_YEARS.NO);
       setEuro("");
     } else {
       setEuro(data);
-      if (knowsEuro === "no") {
-        handleKnowsEuroValue("yes");
+      if (knowsEuro === SHOW_YEARS.NO) {
+        handleKnowsEuroValue(SHOW_YEARS.YES);
       }
     }
   };
 
   const calculateEuro1 = (data) => {
-    if (data === "show") {
+    if (data === SHOW_YEARS.SHOW) {
       setEuro("");
     } else {
       setEuro(data);
@@ -95,30 +93,31 @@ export default function DontKnows({ handleCurrentPage }) {
   };
 
   const handleFuelType = () => {
-    let Etanolis = document.getElementById("Etanolis");
-    let Elektra = document.getElementById("Elektra");
-    let Dyzelinas = document.getElementById("Dyzelinas");
-    let Benzinas = document.getElementById("Benzinas");
-    let Dujos = document.getElementById("Dujos");
+    const Ethanol = document.getElementById("Ethanol");
+    const Electricity = document.getElementById("Electricity");
+    const Diesel = document.getElementById("Diesel");
+    const Gasoline = document.getElementById("Gasoline");
+    const Gas = document.getElementById("Gas");
+    
 
-    Dyzelinas.checked
-      ? (Benzinas.disabled = true)
-      : (Benzinas.disabled = false);
-    (Dujos.checked && Elektra.checked) || Etanolis.checked || Benzinas.checked
-      ? (Dyzelinas.disabled = true)
-      : (Dyzelinas.disabled = false);
-    Elektra.checked || Dyzelinas.checked || Elektra.checked
-      ? (Etanolis.disabled = true)
-      : (Etanolis.disabled = false);
-    Dyzelinas.checked && Elektra.checked
-      ? (Dujos.disabled = true)
-      : (Dujos.disabled = false);
-    Etanolis.checked || (Dyzelinas.checked && Dujos.checked)
-      ? (Elektra.disabled = true)
-      : (Elektra.disabled = false);
+    Diesel.checked
+      ? (Gasoline.disabled = true)
+      : (Gasoline.disabled = false);
+    (Gas.checked && Electricity.checked) || Ethanol.checked || Gasoline.checked
+      ? (Diesel.disabled = true)
+      : (Diesel.disabled = false);
+    Electricity.checked || Diesel.checked || Electricity.checked
+      ? (Ethanol.disabled = true)
+      : (Ethanol.disabled = false);
+    Diesel.checked && Electricity.checked
+      ? (Gas.disabled = true)
+      : (Gas.disabled = false);
+    Ethanol.checked || (Diesel.checked && Gas.checked)
+      ? (Electricity.disabled = true)
+      : (Electricity.disabled = false);
 
-    if (Dyzelinas.checked) {
-      if (Elektra.checked) {
+    if (Diesel.checked) {
+      if (Electricity.checked) {
         setFuelType({ fuel: FUEL_Types.DIESEL, isElectric: true });
         handleKw("");
         setManual("");
@@ -127,20 +126,20 @@ export default function DontKnows({ handleCurrentPage }) {
         handleKw("");
       }
     } else if (
-      ((Elektra.checked || Benzinas.checked) &&
-        (Etanolis.checked || Dujos.checked)) ||
-      Etanolis.checked ||
-      Dujos.checked
+      ((Electricity.checked || Gasoline.checked) &&
+        (Ethanol.checked || Gas.checked)) ||
+      Ethanol.checked ||
+      Gas.checked
     ) {
-      if (Elektra.checked) {
+      if (Electricity.checked) {
         setFuelType({ fuel: FUEL_Types.GAS, isElectric: true });
         handleKw("");
         setManual("");
       } else {
         setFuelType({ fuel: FUEL_Types.GAS, isElectric: false });
       }
-    } else if (Benzinas.checked) {
-      if (Elektra.checked) {
+    } else if (Gasoline.checked) {
+      if (Electricity.checked) {
         setFuelType({ fuel: FUEL_Types.GASOLINE, isElectric: true });
         handleKw("");
         setManual("");
@@ -176,7 +175,7 @@ export default function DontKnows({ handleCurrentPage }) {
             <div>
               <hr />
               <Form.Group className={Styles.carSpecalign}>
-              <Form.Group className={Styles.alignco2}>
+              <Form.Group className={Styles.alignkwandkg}>
               <div class="input-group input-group-sm mb-3">
                 <input
                   className="form-control"
@@ -185,13 +184,13 @@ export default function DontKnows({ handleCurrentPage }) {
                   value={weight}
                   onChange={(e) => handleWeight(e.target.value)}
                 />
-                <span class="input-group-text">kg</span>
+                <span class="input-group-text">KG</span>
                 </div>
                 </Form.Group>
                 
                 {!fuelType.isElectric &&
                   fuelType.fuel !== FUEL_Types.DIESEL && (
-                    <Form.Group className={Styles.alignco2}>
+                    <Form.Group className={Styles.alignkwandkg}>
                        <div class="input-group input-group-sm mb-3">
                     <input
                       className="form-control"
@@ -200,7 +199,7 @@ export default function DontKnows({ handleCurrentPage }) {
                       value={kw}
                       onChange={(e) => handleKw(e.target.value)}
                     />
-                    <span class="input-group-text">kW</span>
+                    <span class="input-group-text">KW</span>
                     </div>
                     </Form.Group>
                   )}
@@ -213,7 +212,7 @@ export default function DontKnows({ handleCurrentPage }) {
           <hr />
           <p>Pasirinkite automobilio Euro standartą</p>
           <div className={Styles.inputsaligncenter}>
-            <Eurodropdown calculateEuro={calculateEuro} knowsEuro={"yes"} />
+            <Eurodropdown calculateEuro={calculateEuro} knowsEuro={SHOW_YEARS.YES} />
 
             {knowsEuro === "no" && (
               <>

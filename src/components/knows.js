@@ -4,14 +4,12 @@ import Styles from "./cssmodules/all.module.css";
 import Eurodropdown from "./eurodropdown";
 import { calculateWithCO2 } from "./functions/calculations";
 import CheckBoxes from "./checkBoxes";
+import {FUEL_Types} from "./functions/constants"
+import {SHOW_YEARS} from "./functions/constants"
 import Discounts from "./discounts";
 
+
 export default function Knows({ handleCurrentPage }) {
-  const FUEL_Types = {
-    DIESEL: "diesel",
-    GAS: "gas",
-    GASOLINE: "gasoline",
-  };
 
   const [fuelType, setFuelType] = useState({ fuel: null });
   const [knowsEuro, setKnowsEuro] = useState("");
@@ -46,19 +44,19 @@ export default function Knows({ handleCurrentPage }) {
     }
   };
   const calculateEuro = (data) => {
-    if (data === "show") {
-      handleKnowsEuroValue("no");
+    if (data === SHOW_YEARS.SHOW) {
+      handleKnowsEuroValue(SHOW_YEARS.NO);
       setEuro("");
     } else {
       setEuro(data);
-      if (knowsEuro === "no") {
-        handleKnowsEuroValue("yes");
+      if (knowsEuro === SHOW_YEARS.NO) {
+        handleKnowsEuroValue(SHOW_YEARS.YES);
       }
     }
   };
 
   const calculateEuro1 = (data) => {
-    if (data === "show") {
+    if (data === SHOW_YEARS.SHOW) {
       setEuro("");
     } else {
       setEuro(data);
@@ -66,7 +64,7 @@ export default function Knows({ handleCurrentPage }) {
   };
 
   const handleDiscount =(data)=>{
-     if(parseInt(data)==2)
+     if(parseInt(data)===2)
      {
       setDiscount(parseInt(data))
      }
@@ -77,37 +75,37 @@ export default function Knows({ handleCurrentPage }) {
   }
 
   const handleFuelType = () => {
-    let Dyzelinas = document.getElementById("Dyzelinas");
-    let Benzinas = document.getElementById("Benzinas");
-    let Dujos = document.getElementById("Dujos");
-    let Etanolis = document.getElementById("Etanolis");
-    let Elektra = document.getElementById("Elektra");
+    const Diesel = document.getElementById("Diesel");
+    const Gasoline = document.getElementById("Gasoline");
+    const Gas = document.getElementById("Gas");
+    const Ethanol = document.getElementById("Ethanol");
+    const Electricity = document.getElementById("Electricity");
 
-    Dyzelinas.checked
-      ? (Benzinas.disabled = true)
-      : (Benzinas.disabled = false);
-    (Dujos.checked && Elektra.checked) || Etanolis.checked || Benzinas.checked
-      ? (Dyzelinas.disabled = true)
-      : (Dyzelinas.disabled = false);
-    Elektra.checked || Dyzelinas.checked || Elektra.checked
-      ? (Etanolis.disabled = true)
-      : (Etanolis.disabled = false);
-    Dyzelinas.checked && Elektra.checked
-      ? (Dujos.disabled = true)
-      : (Dujos.disabled = false);
-    Etanolis.checked || (Dyzelinas.checked && Dujos.checked)
-      ? (Elektra.disabled = true)
-      : (Elektra.disabled = false);
+    Diesel.checked
+      ? (Gasoline.disabled = true)
+      : (Gasoline.disabled = false);
+    (Gas.checked && Electricity.checked) || Ethanol.checked || Gasoline.checked
+      ? (Diesel.disabled = true)
+      : (Diesel.disabled = false);
+    Electricity.checked || Diesel.checked || Electricity.checked
+      ? (Ethanol.disabled = true)
+      : (Ethanol.disabled = false);
+    Diesel.checked && Electricity.checked
+      ? (Gas.disabled = true)
+      : (Gas.disabled = false);
+    Ethanol.checked || (Diesel.checked && Gas.checked)
+      ? (Electricity.disabled = true)
+      : (Electricity.disabled = false);
 
-    if (Dyzelinas.checked) {
+    if (Diesel.checked) {
       setFuelType({ fuel: FUEL_Types.DIESEL });
     } else if (
-      ((Elektra || Benzinas.checked) && (Etanolis.checked || Dujos.checked)) ||
-      Etanolis.checked ||
-      Dujos.checked
+      ((Electricity || Gasoline.checked) && (Ethanol.checked || Gas.checked)) ||
+      Ethanol.checked ||
+      Gas.checked
     ) {
       setFuelType({ fuel: FUEL_Types.GAS });
-    } else if (Benzinas.checked) {
+    } else if (Gasoline.checked) {
       setFuelType({ fuel: FUEL_Types.GASOLINE });
     } else {
       setFuelType({ fuel: null });
@@ -123,7 +121,7 @@ export default function Knows({ handleCurrentPage }) {
       >
         <Card.Body className={Styles.cardwidth}>
           <Card.Title>
-            <h2>Taršos mokečio skaičiuoklė žinant CO<sub>2</sub></h2>
+            <h2>Taršos mokesčio skaičiuoklė žinant CO<sub>2</sub></h2>
           </Card.Title>
           <hr />
           <p>Pasirinkite kuro rūšis :</p>
@@ -132,7 +130,7 @@ export default function Knows({ handleCurrentPage }) {
           <hr />
           <p>Pasirinkite Euro standartą ir  įveskite CO<sub>2</sub></p>
           <div className={Styles.inputsaligncenter}>
-            <Eurodropdown calculateEuro={calculateEuro} knowsEuro={"yes"} />
+            <Eurodropdown calculateEuro={calculateEuro} knowsEuro={SHOW_YEARS.YES} />
 
             {knowsEuro === "no" && (
               <>

@@ -25,10 +25,15 @@ input[type='checkbox'] {
     width: 1.875rem;
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+}
+
 .boxesalign {
     display: flex;
     flex-wrap: wrap;
-    margin-left: 10%;
+    justify-content: flex-start;
 }
 
 .boxesalign div {
@@ -44,16 +49,23 @@ input[type='checkbox'] {
     width: 100%;
 }
 
-.alignco2 {
+.alignco2,
+.alignkwandkg {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
 }
 
-.alignco2 input[type='text'] {
+.alignco2 input[type='text'],
+.alignkwandkg input[type='text'] {
     margin: 0;
     padding: 0.5rem;
+    padding-left: .75rem;
+}
+
+.alignkwandkg span {
+    width: 2.3rem;
 }
 
 label {
