@@ -167,11 +167,10 @@ export default function DontKnows({ handleCurrentPage }) {
       >
         <Card.Body className={Styles.cardwidth}>
           <Card.Title>
-            <h2>Nežinau automobilio išmetamą CO2 kiekį</h2>
+            <h2>Taršos mokesčio skaičiuoklė nežinant CO<sub>2</sub></h2>
           </Card.Title>
-          <p>Pasirinkite kuro tipą:</p>
-          <p className={Styles.description}>Esant keliems kuro tipams (pvz.: benzinas ir elektra, benzinas ir dujos, dyzelinas ir elektra ar pan.) pažymėkite abu kuro tipus.</p>
           <hr />
+          <p>Pasirinkite kuro rūšis:</p>
           <CheckBoxes handleFuelType={handleFuelType} />
           {fuelType.fuel !== null && (
             <div>
@@ -201,14 +200,14 @@ export default function DontKnows({ handleCurrentPage }) {
             </div>
           )}
           <hr />
-          <p>Įveskite mašinos euro standartą</p>
+          <p>Pasirinkite mašinos euro standartą</p>
           <div className={Styles.inputsaligncenter}>
             <Eurodropdown calculateEuro={calculateEuro} knowsEuro={"yes"} />
 
             {knowsEuro === "no" && (
               <>
                 <p className={Styles.askingYears}>
-                  Įveskite mašinos pagaminimo metus
+                  Pasirinkite mašinos pagaminimo metus
                 </p>
                 <Eurodropdown
                   calculateEuro={calculateEuro1}
@@ -219,7 +218,7 @@ export default function DontKnows({ handleCurrentPage }) {
           </div>
 
           <hr style={{ marginTop: "10px" }} />
-          <h4>CO2 kiekis: {(Math.round(fee.c02size * 100)/100).toFixed(2)}</h4>
+          <h4>CO<sub>2</sub> kiekis: {(Math.round(fee.c02size * 100)/100).toFixed(2)}</h4>
           <hr style={{ marginTop: "20px" }} />
           
           <h4>Registravimo mokestis: {fee.taxes===0? 0: (Math.round(fee.taxes.registrationCost * 100)/100).toFixed(2)}</h4>

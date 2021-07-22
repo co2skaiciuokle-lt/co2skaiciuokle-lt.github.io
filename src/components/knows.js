@@ -110,21 +110,21 @@ export default function Knows({ handleCurrentPage }) {
       >
         <Card.Body className={Styles.cardwidth}>
           <Card.Title>
-            <h2>Žinau automobilio išmetamą</h2>
+            <h2>Taršos mokečio skaičiuoklė žinant CO<sub>2</sub></h2>
           </Card.Title>
-          <p>Pasirinkite kuro tipą:</p>
-          <p className={Styles.description}>Esant keliems kuro tipams (pvz.: benzinas ir elektra, benzinas ir dujos, dyzelinas ir elektra ar pan.) pažymėkite abu kuro tipus.</p>
           <hr />
+          <p>Pasirinkite kuro rūšis :</p>
+         
           <CheckBoxes handleFuelType={handleFuelType} />
           <hr />
-          <p>Įveskite mašinos euro standartą</p>
+          <p>Pasirinkite Euro standartą ir  įveskite CO<sub>2</sub></p>
           <div className={Styles.inputsaligncenter}>
             <Eurodropdown calculateEuro={calculateEuro} knowsEuro={"yes"} />
 
             {knowsEuro === "no" && (
               <>
                 <p className={Styles.askingYears}>
-                  Įveskite mašinos pagaminimo metus
+                Pasirinkite mašinos pagaminimo metus
                 </p>
                 <Eurodropdown
                   calculateEuro={calculateEuro1}
