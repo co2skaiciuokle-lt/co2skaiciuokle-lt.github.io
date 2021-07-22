@@ -11,8 +11,7 @@ export default function DontKnows({ handleCurrentPage }) {
     DIESEL: "diesel",
     GAS: "gas",
     GASOLINE: "gasoline",
-  }
-
+  };
 
   const [fuelType, setFuelType] = useState({ fuel: null, isElectric: false });
   const [knowsEuro, setKnowsEuro] = useState("");
@@ -22,12 +21,9 @@ export default function DontKnows({ handleCurrentPage }) {
   const [weight, setWeight] = useState("");
   const [kw, setKw] = useState("");
   const regex = /^[0-9]*$/;
+  
   useEffect(() => {
-    if (
-      weight &&
-      euro &&
-      manual !== ""
-    ) {
+    if (weight && euro && manual !== "") {
       setFee(
         calculatewithoutCO2(
           parseInt(weight),
@@ -70,7 +66,7 @@ export default function DontKnows({ handleCurrentPage }) {
 
   const handleKnowsEuroValue = (data) => {
     if (data !== "") {
-      console.log(data)
+      console.log(data);
       setKnowsEuro(data);
     } else {
       setKnowsEuro(data);
@@ -78,34 +74,25 @@ export default function DontKnows({ handleCurrentPage }) {
     }
   };
 
-  const calculateEuro= (data)=>
-  {
-      if(data==="show")
-      {
-        handleKnowsEuroValue("no")
-        setEuro("");
+  const calculateEuro = (data) => {
+    if (data === "show") {
+      handleKnowsEuroValue("no");
+      setEuro("");
+    } else {
+      setEuro(data);
+      if (knowsEuro === "no") {
+        handleKnowsEuroValue("yes");
       }
-      else
-      {
-        setEuro(data)
-        if(knowsEuro==='no'){
-        handleKnowsEuroValue("yes")
-        }
-      }
-  }
+    }
+  };
 
-  const calculateEuro1= (data)=>
-  {
-      if(data==="show")
-      {
-        setEuro("");
-      }
-      else
-      {
-        setEuro(data)
-     
-      }
-  }
+  const calculateEuro1 = (data) => {
+    if (data === "show") {
+      setEuro("");
+    } else {
+      setEuro(data);
+    }
+  };
 
   const handleFuelType = () => {
     let Etanolis = document.getElementById("Etanolis");
@@ -179,33 +166,35 @@ export default function DontKnows({ handleCurrentPage }) {
       >
         <Card.Body className={Styles.cardwidth}>
           <Card.Title>
-            <h2>Nežinau CO2</h2>
+            <h2>Nežinau automobilio išmetamą CO2 kiekį</h2>
           </Card.Title>
           <p>Pasirinkite kuro tipą:</p>
+          <p className={Styles.description}>Esant keliems kuro tipams (pvz.: benzinas ir elektra, benzinas ir dujos, dyzelinas ir elektra ar pan.) pažymėkite abu kuro tipus.</p>
           <hr />
-            <CheckBoxes handleFuelType={handleFuelType} />
-          {(fuelType.fuel !== null) && (
+          <CheckBoxes handleFuelType={handleFuelType} />
+          {fuelType.fuel !== null && (
             <div>
               <hr />
               <Form.Group className={Styles.carSpecalign}>
                 <input
                   className="form-control"
                   type="text"
-                  placeholder="Svoris"
+                  placeholder="Nurodykite automobilio svorį, kg"
                   value={weight}
                   onChange={(e) => handleWeight(e.target.value)}
                 />
-                {!fuelType.isElectric && fuelType.fuel !== FUEL_Types.DIESEL && (
-                  <input
-                    className="form-control"
-                    type="text"
-                    placeholder="kw"
-                    value={kw}
-                    onChange={(e) => handleKw(e.target.value)}
-                  />
-                )}
+                {!fuelType.isElectric &&
+                  fuelType.fuel !== FUEL_Types.DIESEL && (
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="Automobilio variklio galia, kW"
+                      value={kw}
+                      onChange={(e) => handleKw(e.target.value)}
+                    />
+                  )}
                 {!fuelType.isElectric && (
-                 <GearTypeDropdown setManual={setManual}/>
+                  <GearTypeDropdown setManual={setManual} />
                 )}
               </Form.Group>
             </div>
@@ -213,27 +202,33 @@ export default function DontKnows({ handleCurrentPage }) {
           <hr />
           <p>Įveskite mašinos euro standartą</p>
           <div className={Styles.inputsaligncenter}>
-          
-              <Eurodropdown calculateEuro={calculateEuro} knowsEuro={'yes'} />
-           
-            {knowsEuro === "no" && (<>
-              <p className={Styles.askingYears}>Įveskite mašinos pagaminimo metus</p>
-              <Eurodropdown calculateEuro={calculateEuro1} knowsEuro={knowsEuro} />
+            <Eurodropdown calculateEuro={calculateEuro} knowsEuro={"yes"} />
+
+            {knowsEuro === "no" && (
+              <>
+                <p className={Styles.askingYears}>
+                  Įveskite mašinos pagaminimo metus
+                </p>
+                <Eurodropdown
+                  calculateEuro={calculateEuro1}
+                  knowsEuro={knowsEuro}
+                />
               </>
             )}
           </div>
 
           <hr style={{ marginTop: "10px" }} />
-          <h4>CO2 kiekis: {Math.round(fee.c02size)}</h4>
+          <h4>CO2 kiekis: {(Math.round(fee.c02size * 100)/100).toFixed(2)}</h4>
           <hr style={{ marginTop: "20px" }} />
-          <h4>Registravimo mokestis: {Math.round(fee.taxes)}</h4>
-          <h4>Metinis mokestis: {Math.round(fee.taxes / 4)}</h4>
+          
+          <h4>Registravimo mokestis: {fee.taxes===0? 0: (Math.round(fee.taxes.registrationCost * 100)/100).toFixed(2)}</h4>
+          <h4>Metinis mokestis: {fee.taxes===0? 0: (Math.round(fee.taxes.yearsCost * 100)/100).toFixed(2)}</h4>
         </Card.Body>
         <Button onClick={() => handleCurrentPage("")} variant="success">
           Atgal
         </Button>
       </Card>
-
+      {console.log(fee.taxes)}
     </div>
   );
 }

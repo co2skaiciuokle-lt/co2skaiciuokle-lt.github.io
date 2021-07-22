@@ -3,17 +3,20 @@ const FUEL_Types = {
     GAS: "gas",
     GASOLINE: "gasoline",
 };
-
+let taxes
 export function calculateWithCO2(co2, euro, fuelType) {
-    return checkFuelType(co2, euro, fuelType);
+    taxes = calculateFee(co2, euro, fuelType);
+
+    return { taxes }
 }
 
 export function calculatewithoutCO2(weigth, kw, euro, fuelType, isManual) {
-    const taxes = checkFuelType(
+    taxes = calculateFee(
         calculateAproxCO2(weigth, kw, fuelType, isManual),
         euro,
         fuelType
     );
+
     const c02size = calculateAproxCO2(weigth, kw, fuelType, isManual);
     return { taxes, c02size };
 }
@@ -48,21 +51,28 @@ function calculateAproxCO2(weigth, kw, fuelType, isManual) {
     return 0;
 }
 
-function checkFuelType(co2, euro, fuelType) {
-    return co2 *
-        calculateCoeffOfEuroCO2(co2) *
-        calculateCoeffOfEuro(euro, fuelType) >
-        2258 ?
-        2258 :
-        co2 * calculateCoeffOfEuroCO2(co2) * calculateCoeffOfEuro(euro, fuelType);
+function calculateFee(co2, euro, fuelType) {
+
+    return {
+        registrationCost: co2 *
+            calculateCoeffOfEuroCO2(co2).registrationCoeff *
+            calculateCoeffOfEuro(euro, fuelType) >
+            2258 ?
+            2258 : co2 * calculateCoeffOfEuroCO2(co2).registrationCoeff * calculateCoeffOfEuro(euro, fuelType),
+        yearsCost: co2 *
+            calculateCoeffOfEuroCO2(co2).yearsCoeff *
+            calculateCoeffOfEuro(euro, fuelType) >
+            564 ?
+            564 : co2 * calculateCoeffOfEuroCO2(co2).yearsCoeff * calculateCoeffOfEuro(euro, fuelType),
+    }
 }
 
 function calculateCoeffOfEuroCO2(co2) {
-    if (co2 < 131) return 0;
-    if (co2 >= 131 && co2 <= 160) return 1.1;
-    if (co2 >= 161 && co2 <= 200) return 1.5;
-    if (co2 >= 201 && co2 <= 250) return 2.2;
-    if (co2 >= 251) return 3;
+    if (co2 < 131) return { registrationCoeff: 0, yearsCoeff: 0 };
+    if (co2 >= 131 && co2 <= 160) return { registrationCoeff: 1.1, yearsCoeff: 0.28 };
+    if (co2 >= 161 && co2 <= 200) return { registrationCoeff: 1.5, yearsCoeff: 0.38 };
+    if (co2 >= 201 && co2 <= 250) return { registrationCoeff: 2.2, yearsCoeff: 0.55 };
+    if (co2 >= 251) return { registrationCoeff: 3, yearsCoeff: 0.75 };
 
     return 0;
 }

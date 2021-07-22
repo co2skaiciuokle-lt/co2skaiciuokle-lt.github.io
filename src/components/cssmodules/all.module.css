@@ -54,6 +54,7 @@ select {
 
 .carSpecalign {
     display: flex;
+    flex-direction: column;
 }
 
 .boxesalign div {
@@ -72,6 +73,10 @@ body {
     margin-top: 1.5rem;
 }
 
+.description {
+    font-size: x-small;
+}
+
 @media all and (max-width:1000px) {
     .cardwidth {
         width: 60vw;
@@ -87,8 +92,5 @@ body {
 @media all and (max-width:600px) {
     .cardwidth {
         width: 90vw;
-    }
-    .uninputs {
-        flex-direction: column;
     }
 }

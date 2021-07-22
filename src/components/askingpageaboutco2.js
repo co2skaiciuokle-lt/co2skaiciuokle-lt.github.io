@@ -10,7 +10,7 @@ export default function AskingPageAboutCO2({ handleCurrentPage }) {
         style={{ backgroundColor: `rgba(255,255,255,0.7)` }}
       >
         <Card.Body className={Styles.cardwidth}>
-          <Card.Title>Registracijos mokesčio skaičiuoklė</Card.Title>
+          <Card.Title>Transporto priemonės taršos mokesčio skaičiuoklė</Card.Title>
           <div className={Styles.buttonsflex}>
             <Button onClick={() => handleCurrentPage("no")} variant="success">
               Nežinau automobilio CO2
