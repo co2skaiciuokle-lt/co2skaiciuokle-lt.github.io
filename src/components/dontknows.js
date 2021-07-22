@@ -211,14 +211,14 @@ export default function DontKnows({ handleCurrentPage }) {
             </div>
           )}
           <hr />
-          <p>Pasirinkite mašinos euro standartą</p>
+          <p>Pasirinkite automobilio Euro standartą</p>
           <div className={Styles.inputsaligncenter}>
             <Eurodropdown calculateEuro={calculateEuro} knowsEuro={"yes"} />
 
             {knowsEuro === "no" && (
               <>
                 <p className={Styles.askingYears}>
-                  Pasirinkite mašinos pagaminimo metus
+                  Pasirinkite automobilio pagaminimo metus
                 </p>
                 <Eurodropdown
                   calculateEuro={calculateEuro1}

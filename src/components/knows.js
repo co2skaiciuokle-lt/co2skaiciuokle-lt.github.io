@@ -124,7 +124,7 @@ export default function Knows({ handleCurrentPage }) {
             {knowsEuro === "no" && (
               <>
                 <p className={Styles.askingYears}>
-                Pasirinkite mašinos pagaminimo metus
+                Pasirinkite automobilio pagaminimo metus
                 </p>
                 <Eurodropdown
                   calculateEuro={calculateEuro1}
