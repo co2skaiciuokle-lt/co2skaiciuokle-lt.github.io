@@ -21,6 +21,9 @@ export default function AskingPageAboutCO2({ handleCurrentPage }) {
           </div>
         </Card.Body>
       </Card>
+
+
+      
     </div>
   );
 }

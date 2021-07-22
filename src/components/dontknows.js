@@ -176,22 +176,33 @@ export default function DontKnows({ handleCurrentPage }) {
             <div>
               <hr />
               <Form.Group className={Styles.carSpecalign}>
+              <Form.Group className={Styles.alignco2}>
+              <div class="input-group input-group-sm mb-3">
                 <input
                   className="form-control"
                   type="text"
-                  placeholder="Nurodykite automobilio svorį, kg"
+                  placeholder="Nurodykite automobilio svorį"
                   value={weight}
                   onChange={(e) => handleWeight(e.target.value)}
                 />
+                <span class="input-group-text">kg</span>
+                </div>
+                </Form.Group>
+                
                 {!fuelType.isElectric &&
                   fuelType.fuel !== FUEL_Types.DIESEL && (
+                    <Form.Group className={Styles.alignco2}>
+                       <div class="input-group input-group-sm mb-3">
                     <input
                       className="form-control"
                       type="text"
-                      placeholder="Automobilio variklio galia, kW"
+                      placeholder="Automobilio variklio galia"
                       value={kw}
                       onChange={(e) => handleKw(e.target.value)}
                     />
+                    <span class="input-group-text">kW</span>
+                    </div>
+                    </Form.Group>
                   )}
                 {!fuelType.isElectric && (
                   <GearTypeDropdown setManual={setManual} />

@@ -133,18 +133,22 @@ export default function Knows({ handleCurrentPage }) {
               </>
             )}
           </div>
-          <Form.Group className={Styles.inputsaligncenter}>
+          <Form.Group className={Styles.alignco2}>
+          <div class="input-group input-group-sm mb-3">
             <input
               className="form-control"
               type="text"
-              placeholder="CO2 išmetimo kiekis"
+              placeholder="CO2 išmetimo kiekis "
               value={co2Amount}
               onChange={(e) => handleAmount(e.target.value)}
             />
+            <span class="input-group-text">g/km</span>
+            </div>
           </Form.Group>
           <hr style={{ marginTop: "40px" }} />
           <h4>Registravimo mokestis: {fee.taxes===0? 0: (Math.round(fee.taxes.registrationCost * 100)/100).toFixed(2)}</h4>
           <h4>Metinis mokestis: {fee.taxes===0? 0: (Math.round(fee.taxes.yearsCost * 100)/100).toFixed(2)}</h4>
+          
         </Card.Body>
         <Button onClick={() => handleCurrentPage("")} variant="success">
           Atgal

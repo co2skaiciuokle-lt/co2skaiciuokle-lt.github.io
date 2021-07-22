@@ -44,6 +44,18 @@ input[type='checkbox'] {
     width: 100%;
 }
 
+.alignco2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.alignco2 input[type='text'] {
+    margin: 0;
+    padding: 0.5rem;
+}
+
 label {
     margin-left: 0.625rem;
 }
