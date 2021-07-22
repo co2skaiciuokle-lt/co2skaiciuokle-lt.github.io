@@ -158,10 +158,9 @@ export default function Knows({ handleCurrentPage }) {
             <span class="input-group-text">g/km</span>
             </div>
           </Form.Group>
-          <Discounts handleDiscount={handleDiscount} />
           <hr style={{ marginTop: "40px" }} />
-          <h4>Registravimo mokestis: {fee.taxes===0? 0: (discount*Math.round(fee.taxes.registrationCost * 100)/100).toFixed(2)} EUR </h4>
-          <h4>Metinis mokestis: {fee.taxes===0? 0: (discount*Math.round(fee.taxes.yearsCost * 100)/100).toFixed(2)} EUR </h4>
+          <h4>Registravimo mokestis: {fee.taxes===0? 0: (Math.round(fee.taxes.registrationCost * 100)/100).toFixed(2)} EUR </h4>
+          <h4>Metinis mokestis: {fee.taxes===0? 0: (Math.round(fee.taxes.yearsCost * 100)/100).toFixed(2)} EUR </h4>
           
         </Card.Body>
         <Button onClick={() => handleCurrentPage("")} variant="success">
