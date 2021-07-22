@@ -28,6 +28,7 @@ input[type='checkbox'] {
 .boxesalign {
     display: flex;
     flex-wrap: wrap;
+    margin-left: 10%;
 }
 
 .boxesalign div {
@@ -55,10 +56,16 @@ select {
 .carSpecalign {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .boxesalign div {
     width: 6.875rem;
+}
+
+.bottomPadding {
+    padding: 10rem;
+    background: transparent;
 }
 
 body {
@@ -67,6 +74,7 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    padding-bottom: 43rem;
 }
 
 .askingYears {

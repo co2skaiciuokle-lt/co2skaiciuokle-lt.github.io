@@ -159,6 +159,7 @@ export default function DontKnows({ handleCurrentPage }) {
   };
 
   return (
+    <div>
     <div className={Styles.mainpage}>
       <Card
         className="text-center"
@@ -228,7 +229,9 @@ export default function DontKnows({ handleCurrentPage }) {
           Atgal
         </Button>
       </Card>
-      {console.log(fee.taxes)}
+     
+    </div>
+    <div className='bottomPadding'> ‎</div>
     </div>
   );
 }

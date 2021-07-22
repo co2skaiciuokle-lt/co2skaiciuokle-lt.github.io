@@ -102,6 +102,7 @@ export default function Knows({ handleCurrentPage }) {
   };
 
   return (
+    <div>
     <div className={Styles.mainpage}>
       <Card
         className="text-center"
@@ -149,6 +150,9 @@ export default function Knows({ handleCurrentPage }) {
           Atgal
         </Button>
       </Card>
+     
+      </div>
+      <div className='bottomPadding'> ‎</div>
     </div>
   );
 }
