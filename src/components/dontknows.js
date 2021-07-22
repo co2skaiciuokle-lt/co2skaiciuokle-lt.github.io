@@ -232,8 +232,8 @@ export default function DontKnows({ handleCurrentPage }) {
           <h4>CO<sub>2</sub> kiekis: {(Math.round(fee.c02size * 100)/100).toFixed(2)}</h4>
           <hr style={{ marginTop: "20px" }} />
           
-          <h4>Registravimo mokestis: {fee.taxes===0? 0: (Math.round(fee.taxes.registrationCost * 100)/100).toFixed(2)}</h4>
-          <h4>Metinis mokestis: {fee.taxes===0? 0: (Math.round(fee.taxes.yearsCost * 100)/100).toFixed(2)}</h4>
+          <h4>Registravimo mokestis: {fee.taxes===0? 0: (Math.round(fee.taxes.registrationCost * 100)/100).toFixed(2)} EUR </h4>
+          <h4>Metinis mokestis: {fee.taxes===0? 0: (Math.round(fee.taxes.yearsCost * 100)/100).toFixed(2)} EUR </h4>
         </Card.Body>
         <Button onClick={() => handleCurrentPage("")} variant="success">
           Atgal

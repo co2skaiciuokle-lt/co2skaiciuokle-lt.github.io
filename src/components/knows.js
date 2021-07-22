@@ -4,6 +4,7 @@ import Styles from "./cssmodules/all.module.css";
 import Eurodropdown from "./eurodropdown";
 import { calculateWithCO2 } from "./functions/calculations";
 import CheckBoxes from "./checkBoxes";
+import Discounts from "./discounts";
 
 export default function Knows({ handleCurrentPage }) {
   const FUEL_Types = {
@@ -17,6 +18,7 @@ export default function Knows({ handleCurrentPage }) {
   const [euro, setEuro] = useState("");
   const [co2Amount, setCo2Amount] = useState("");
   const [fee, setFee] = useState({taxes:0});
+  const [discount, setDiscount] = useState(1)
 
   useEffect(() => {
     if (co2Amount && euro && fuelType) {
@@ -62,6 +64,17 @@ export default function Knows({ handleCurrentPage }) {
       setEuro(data);
     }
   };
+
+  const handleDiscount =(data)=>{
+     if(parseInt(data)==2)
+     {
+      setDiscount(parseInt(data))
+     }
+     else
+     {
+      setDiscount(1)
+     }
+  }
 
   const handleFuelType = () => {
     let Dyzelinas = document.getElementById("Dyzelinas");
@@ -145,9 +158,10 @@ export default function Knows({ handleCurrentPage }) {
             <span class="input-group-text">g/km</span>
             </div>
           </Form.Group>
+          <Discounts handleDiscount={handleDiscount} />
           <hr style={{ marginTop: "40px" }} />
-          <h4>Registravimo mokestis: {fee.taxes===0? 0: (Math.round(fee.taxes.registrationCost * 100)/100).toFixed(2)}</h4>
-          <h4>Metinis mokestis: {fee.taxes===0? 0: (Math.round(fee.taxes.yearsCost * 100)/100).toFixed(2)}</h4>
+          <h4>Registravimo mokestis: {fee.taxes===0? 0: (discount*Math.round(fee.taxes.registrationCost * 100)/100).toFixed(2)} EUR </h4>
+          <h4>Metinis mokestis: {fee.taxes===0? 0: (discount*Math.round(fee.taxes.yearsCost * 100)/100).toFixed(2)} EUR </h4>
           
         </Card.Body>
         <Button onClick={() => handleCurrentPage("")} variant="success">
