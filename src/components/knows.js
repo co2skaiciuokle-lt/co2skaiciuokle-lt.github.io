@@ -147,9 +147,9 @@ export default function Knows({ handleCurrentPage }) {
                 <span class="input-group-text">g/km</span>
               </div>
             </Form.Group>
-            <p>Pasirinkite Lengvata</p>
+            <p>Pasirinkite lengvatą</p>
             <CheckboxesPerks setPerks={setPerks} />
-            <p>Pasirinkite automobilio registravimo data</p>
+            <p>Pasirinkite automobilio registravimo datą</p>
             <YearOfRegistrationDropdown setRegistrationYearDiscount={setRegistrationYearDiscount}/>
                
             <FeeTable fee={fee} perks={perks} registrationYearDiscount={registrationYearDiscount} />
