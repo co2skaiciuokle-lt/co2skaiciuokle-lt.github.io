@@ -64,15 +64,26 @@ function calculateFee(co2, euro, fuelType) {
             calculateCoeffOfEuro(euro, fuelType) >
             564 ?
             564 : co2 * calculateCoeffOfEuroCO2(co2).yearsCoeff * calculateCoeffOfEuro(euro, fuelType),
+        y2026registrationCost: co2 *
+            calculateCoeffOfEuroCO2(co2).y2026registrationCoeff *
+            calculateCoeffOfEuro(euro, fuelType) >
+            2258 ?
+            2258 : co2 * calculateCoeffOfEuroCO2(co2).y2026registrationCoeff * calculateCoeffOfEuro(euro, fuelType),
+        y2026yearsCost: co2 *
+            calculateCoeffOfEuroCO2(co2).y2026yearsCoeff *
+            calculateCoeffOfEuro(euro, fuelType) >
+            564 ?
+            564 : co2 * calculateCoeffOfEuroCO2(co2).y2026yearsCoeff * calculateCoeffOfEuro(euro, fuelType),
     }
 }
 
 function calculateCoeffOfEuroCO2(co2) {
-    if (co2 < 131) return { registrationCoeff: 0, yearsCoeff: 0 };
-    if (co2 >= 131 && co2 <= 160) return { registrationCoeff: 1.1, yearsCoeff: 0.28 };
-    if (co2 >= 161 && co2 <= 200) return { registrationCoeff: 1.5, yearsCoeff: 0.38 };
-    if (co2 >= 201 && co2 <= 250) return { registrationCoeff: 2.2, yearsCoeff: 0.55 };
-    if (co2 >= 251) return { registrationCoeff: 3, yearsCoeff: 0.75 };
+    if ( co2 < 111 ) return { registrationCoeff: 0, yearsCoeff: 0, y2026registrationCoeff: 0, y2026yearsCoeff: 0 };
+    if ( co2 >=111 && co2 < 131) return { registrationCoeff: 0, yearsCoeff: 0 , y2026registrationCoeff: 1.1, y2026yearsCoeff: 0.28 };
+    if (co2 >= 131 && co2 <= 160) return { registrationCoeff: 1.1, yearsCoeff: 0.28, y2026registrationCoeff: 1.1, y2026yearsCoeff: 0.28 };
+    if (co2 >= 161 && co2 <= 200) return { registrationCoeff: 1.5, yearsCoeff: 0.38,y2026registrationCoeff: 1.5, y2026yearsCoeff: 0.38 };
+    if (co2 >= 201 && co2 <= 250) return { registrationCoeff: 2.2, yearsCoeff: 0.55,y2026registrationCoeff: 2.2, y2026yearsCoeff: 0.55};
+    if (co2 >= 251) return { registrationCoeff: 3, yearsCoeff: 0.75,y2026registrationCoeff: 3, y2026yearsCoeff: 0.75 };
 
     return 0;
 }

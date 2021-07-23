@@ -30,15 +30,19 @@ input[type='checkbox'] {
     justify-content: center;
 }
 
-.boxesalign {
+.boxesalign,.boxesalignperks {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
 }
 
-.boxesalign div {
+.boxesalign div,.boxesalignperks div {
     display: flex;
     align-items: center;
+}
+
+.boxesalignperks div{
+    margin-bottom: 2rem;
 }
 
 .inputsaligncenter {

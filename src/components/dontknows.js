@@ -7,6 +7,9 @@ import CheckBoxes from "./checkBoxes";
 import GearTypeDropdown from "./geartypedropdown";
 import {FUEL_Types} from "./functions/constants"
 import {SHOW_YEARS} from "./functions/constants"
+import FeeTable from "./feeTable";
+import CheckboxesPerks from "./checkboxesPerks";
+import YearOfRegistrationDropdown from "./yearofregistrationdropdown";
 
 export default function DontKnows({ handleCurrentPage }) {
 
@@ -18,6 +21,8 @@ export default function DontKnows({ handleCurrentPage }) {
   const [manual, setManual] = useState("");
   const [weight, setWeight] = useState("");
   const [kw, setKw] = useState("");
+  const [perks, setPerks] = useState(1)
+  const [registrationYearDiscount, setRegistrationYearDiscount] = useState(1)
   const regex = /^[0-9]*$/;
   
   useEffect(() => {
@@ -226,13 +231,17 @@ export default function DontKnows({ handleCurrentPage }) {
               </>
             )}
           </div>
+          <p>Pasirinkite Lengvata</p>
+            <CheckboxesPerks setPerks={setPerks} />
+            <p>Pasirinkite automobilio registravimo data</p>
+            <YearOfRegistrationDropdown setRegistrationYearDiscount={setRegistrationYearDiscount}/>
+               
+            
 
           <hr style={{ marginTop: "10px" }} />
           <h4>CO<sub>2</sub> kiekis: {(Math.round(fee.c02size * 100)/100).toFixed(2)}</h4>
           <hr style={{ marginTop: "20px" }} />
-          
-          <h4>Registravimo mokestis: {fee.taxes===0? 0: (Math.round(fee.taxes.registrationCost * 100)/100).toFixed(2)} EUR </h4>
-          <h4>Metinis mokestis: {fee.taxes===0? 0: (Math.round(fee.taxes.yearsCost * 100)/100).toFixed(2)} EUR </h4>
+          <FeeTable fee={fee} perks={perks} registrationYearDiscount={registrationYearDiscount} />
         </Card.Body>
         <Button onClick={() => handleCurrentPage("")} variant="success">
           Atgal
