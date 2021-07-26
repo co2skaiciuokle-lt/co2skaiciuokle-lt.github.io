@@ -15,9 +15,9 @@ export default function feeTable({fee,perks,registrationYearDiscount}) {
         </thead>
         <tbody>
           <tr>
-            <td>Registracijos mokestis, Eur</td>
-            <td>{fee.taxes===0? 0: (Math.round(fee.taxes.registrationCost * 100)/100).toFixed(2)}</td>
-            <td>{fee.taxes===0? 0: (Math.round(fee.taxes.y2026registrationCost * 100)/100).toFixed(2)}</td>
+            <td>Pirmos registracijos Lietuvoje mokestis, Eur</td>
+            <td>{parseInt(registrationYearDiscount)===2 ? fee.taxes===0? 0: (Math.round(fee.taxes.registrationCost * 100)/100).toFixed(2):0}</td>
+            <td>{parseInt(registrationYearDiscount)===2 ?fee.taxes===0? 0: (Math.round(fee.taxes.y2026registrationCost * 100)/100).toFixed(2):0}</td>
           </tr>
           <tr>
             <td>Naudotojo mokestis, Eur</td>

@@ -7,7 +7,7 @@ export default function EuroDropdown({ calculateEuro, knowsEuro }) {
       className="form-select"
       style={{ marginTop: "1rem" }}
     >
-      {knowsEuro === "no" && <option value="show">metus</option>}
+      {knowsEuro === "no" && <option value="show">Pasirinkite metus</option>}
       {knowsEuro === "yes" && <option value="">Pasirinkite euro st.</option>}
       <option value="6">{knowsEuro === "no" ? "2015 ar naujesni gamybos metai" : "Euro 6"}</option>
       <option value="5">{knowsEuro === "no" ? "2014-2011" : "Euro 5"}</option>

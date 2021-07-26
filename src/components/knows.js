@@ -119,14 +119,14 @@ export default function Knows({ handleCurrentPage }) {
 
             <CheckBoxes handleFuelType={handleFuelType} />
             <hr />
-            <p>Pasirinkite Euro standartą ir  įveskite CO<sub>2</sub></p>
+            <p>Pasirinkite Euro standartą ir  įveskite CO<sub>2</sub> :</p>
             <div className={Styles.inputsaligncenter}>
               <Eurodropdown calculateEuro={calculateEuro} knowsEuro={SHOW_YEARS.YES} />
 
               {knowsEuro === "no" && (
                 <>
                   <p className={Styles.askingYears}>
-                    Pasirinkite automobilio pagaminimo metus
+                    Pasirinkite automobilio pagaminimo metus :
                   </p>
                   <Eurodropdown
                     calculateEuro={calculateEuro1}
@@ -147,9 +147,9 @@ export default function Knows({ handleCurrentPage }) {
                 <span class="input-group-text">g/km</span>
               </div>
             </Form.Group>
-            <p>Pasirinkite lengvatą</p>
+            <p>Pasirinkite lengvatą :</p>
             <CheckboxesPerks setPerks={setPerks} />
-            <p>Pasirinkite automobilio registravimo datą</p>
+            <p>Pasirinkite automobilio registravimo datą :</p>
             <div className={Styles.inputsaligncenter}>
             <YearOfRegistrationDropdown setRegistrationYearDiscount={setRegistrationYearDiscount}/>
             </div>
