@@ -13,10 +13,10 @@ export default function AskingPageAboutCO2({ handleCurrentPage }) {
           <Card.Title>Transporto priemonės taršos mokesčio skaičiuoklė</Card.Title>
           <div className={Styles.buttonsflex}>
           <Button onClick={() => handleCurrentPage("yes")} variant="success">
-              Žinau automobilio CO2
+              Žinau automobilio CO<sub>2</sub>
             </Button>
             <Button onClick={() => handleCurrentPage("no")} variant="success">
-              Nežinau automobilio CO2
+              Nežinau automobilio CO<sub>2</sub>
             </Button>
           </div>
         </Card.Body>
