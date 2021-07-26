@@ -147,12 +147,13 @@ export default function Knows({ handleCurrentPage }) {
                 <span class="input-group-text">g/km</span>
               </div>
             </Form.Group>
-            <p><b>Pasirinkite lengvatą :</b></p>
-            <CheckboxesPerks setPerks={setPerks} />
             <p><b>Pasirinkite automobilio pirmos registracijos datą :</b></p>
             <div className={Styles.inputsaligncenter}>
             <YearOfRegistrationDropdown setRegistrationYearDiscount={setRegistrationYearDiscount}/>
             </div>
+            <p><b>Pasirinkite lengvatą :</b></p>
+            <CheckboxesPerks setPerks={setPerks} />
+          
                
             <FeeTable fee={fee} perks={perks} registrationYearDiscount={registrationYearDiscount} />
 

@@ -231,12 +231,13 @@ export default function DontKnows({ handleCurrentPage }) {
               </>
             )}
           </div>
-          <p><b>Pasirinkite lengvatą :</b></p>
-            <CheckboxesPerks setPerks={setPerks} />
-            <p><b>Pasirinkite automobilio pirmos registracijos datą :</b></p>
+          <p><b>Pasirinkite automobilio pirmos registracijos datą :</b></p>
             <div className={Styles.inputsaligncenter}>
             <YearOfRegistrationDropdown setRegistrationYearDiscount={setRegistrationYearDiscount}/>
             </div>
+          <p><b>Pasirinkite lengvatą :</b></p>
+            <CheckboxesPerks setPerks={setPerks} />
+            
                
           <hr style={{ marginTop: "10px" }} />
           <h4>CO<sub>2</sub> kiekis: {(Math.round(fee.c02size * 100)/100).toFixed(2)}</h4>
