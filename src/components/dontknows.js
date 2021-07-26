@@ -5,8 +5,8 @@ import Eurodropdown from "./eurodropdown";
 import { calculatewithoutCO2 } from "./functions/calculations";
 import CheckBoxes from "./checkBoxes";
 import GearTypeDropdown from "./geartypedropdown";
-import {FUEL_Types} from "./functions/constants"
-import {SHOW_YEARS} from "./functions/constants"
+import { FUEL_Types } from "./functions/constants"
+import { SHOW_YEARS } from "./functions/constants"
 import FeeTable from "./feeTable";
 import CheckboxesPerks from "./checkboxesPerks";
 import YearOfRegistrationDropdown from "./yearofregistrationdropdown";
@@ -24,7 +24,7 @@ export default function DontKnows({ handleCurrentPage }) {
   const [perks, setPerks] = useState(1)
   const [registrationYearDiscount, setRegistrationYearDiscount] = useState("")
   const regex = /^[0-9]*$/;
-  
+
   useEffect(() => {
     if (weight && euro && manual !== "" && registrationYearDiscount) {
       setFee(
@@ -49,7 +49,7 @@ export default function DontKnows({ handleCurrentPage }) {
     } else {
       setFee({ taxes: 0, c02size: 0 });
     }
-  }, [weight, kw, euro, fuelType, manual,registrationYearDiscount]);
+  }, [weight, kw, euro, fuelType, manual, registrationYearDiscount]);
 
   const handleWeight = (data) => {
     if (regex.test(data)) {
@@ -103,7 +103,7 @@ export default function DontKnows({ handleCurrentPage }) {
     const Diesel = document.getElementById("Diesel");
     const Gasoline = document.getElementById("Gasoline");
     const Gas = document.getElementById("Gas");
-    
+
 
     Diesel.checked
       ? (Gasoline.disabled = true)
@@ -164,93 +164,92 @@ export default function DontKnows({ handleCurrentPage }) {
 
   return (
     <div>
-    <div className={Styles.mainpage}>
-      <Card
-        className="text-center"
-        style={{ backgroundColor: `rgba(255,255,255,0.7) ` }}
-      >
-        <Card.Body className={Styles.cardwidth}>
-          <Card.Title>
-            <h2>Taršos mokesčio skaičiuoklė nežinant CO<sub>2</sub></h2>
-          </Card.Title>
-          <hr />
-          <p><b>Pasirinkite kuro rūšis :</b></p>
-          <CheckBoxes handleFuelType={handleFuelType} />
-          {fuelType.fuel !== null && (
-            <div>
-              <hr />
-              <Form.Group className={Styles.carSpecalign}>
-              <Form.Group className={Styles.alignkwandkg}>
-              <div class="input-group input-group-sm mb-3">
-                <input
-                  className="form-control"
-                  type="text"
-                  placeholder="Nurodykite automobilio svorį"
-                  value={weight}
-                  onChange={(e) => handleWeight(e.target.value)}
-                />
-                <span class="input-group-text">KG</span>
-                </div>
-                </Form.Group>
-                
-                {!fuelType.isElectric &&
-                  fuelType.fuel !== FUEL_Types.DIESEL && (
-                    <Form.Group className={Styles.alignkwandkg}>
-                       <div class="input-group input-group-sm mb-3">
-                    <input
-                      className="form-control"
-                      type="text"
-                      placeholder="Automobilio variklio galia"
-                      value={kw}
-                      onChange={(e) => handleKw(e.target.value)}
-                    />
-                    <span class="input-group-text">KW</span>
+      <div className={Styles.mainpage}>
+        <Card
+          className="text-center"
+          style={{ backgroundColor: `rgba(255,255,255,0.7) ` }}
+        >
+          <Card.Body className={Styles.cardwidth}>
+            <Card.Title>
+              <h2>Taršos mokesčio skaičiuoklė nežinant CO<sub>2</sub></h2>
+            </Card.Title>
+            <hr />
+            <p><b>Pasirinkite kuro rūšis :</b></p>
+            <CheckBoxes handleFuelType={handleFuelType} />
+            {fuelType.fuel !== null && (
+              <div>
+                <hr />
+                <Form.Group className={Styles.carSpecalign}>
+                  <Form.Group className={Styles.alignkwandkg}>
+                    <div class="input-group input-group-sm mb-3">
+                      <input
+                        className="form-control"
+                        type="text"
+                        placeholder="Nurodykite automobilio svorį"
+                        value={weight}
+                        onChange={(e) => handleWeight(e.target.value)}
+                      />
+                      <span class="input-group-text">KG</span>
                     </div>
-                    </Form.Group>
-                  )}
-                {!fuelType.isElectric && (
-                  <GearTypeDropdown setManual={setManual} />
-                )}
-              </Form.Group>
-            </div>
-          )}
-          <hr />
-          <p><b>Pasirinkite automobilio Euro standartą :</b></p>
-          <div className={Styles.inputsaligncenter}>
-            <Eurodropdown calculateEuro={calculateEuro} knowsEuro={SHOW_YEARS.YES} />
+                  </Form.Group>
 
-            {knowsEuro === "no" && (
-              <>
-                <p className={Styles.askingYears}>
-                <b> Pasirinkite automobilio pagaminimo metus :</b>
-                </p>
-                <Eurodropdown
-                  calculateEuro={calculateEuro1}
-                  knowsEuro={knowsEuro}
-                />
-              </>
+                  {!fuelType.isElectric &&
+                    fuelType.fuel !== FUEL_Types.DIESEL && (
+                      <Form.Group className={Styles.alignkwandkg}>
+                        <div class="input-group input-group-sm mb-3">
+                          <input
+                            className="form-control"
+                            type="text"
+                            placeholder="Automobilio variklio galia"
+                            value={kw}
+                            onChange={(e) => handleKw(e.target.value)}
+                          />
+                          <span class="input-group-text">KW</span>
+                        </div>
+                      </Form.Group>
+                    )}
+                  {!fuelType.isElectric && (
+                    <GearTypeDropdown setManual={setManual} />
+                  )}
+                </Form.Group>
+              </div>
             )}
-          </div>
-          <p><b>Pasirinkite automobilio pirmos registracijos datą :</b></p>
+            <hr />
+            <p><b>Pasirinkite automobilio Euro standartą :</b></p>
             <div className={Styles.inputsaligncenter}>
-            <YearOfRegistrationDropdown setRegistrationYearDiscount={setRegistrationYearDiscount}/>
+              <Eurodropdown calculateEuro={calculateEuro} knowsEuro={SHOW_YEARS.YES} />
+
+              {knowsEuro === "no" && (
+                <>
+                  <p className={Styles.askingYears}>
+                    <b> Pasirinkite automobilio pagaminimo metus :</b>
+                  </p>
+                  <Eurodropdown
+                    calculateEuro={calculateEuro1}
+                    knowsEuro={knowsEuro}
+                  />
+                </>
+              )}
             </div>
-          <p><b>Pasirinkite lengvatą :</b></p>
+            <p><b>Pasirinkite automobilio pirmos registracijos datą :</b></p>
+            <div className={Styles.inputsaligncenter}>
+              <YearOfRegistrationDropdown setRegistrationYearDiscount={setRegistrationYearDiscount} />
+            </div>
+            <p><b>Pasirinkite lengvatą :</b></p>
             <CheckboxesPerks setPerks={setPerks} />
-            
-               
-          <hr style={{ marginTop: "10px" }} />
-          <h4>CO<sub>2</sub> kiekis: {(Math.round(fee.c02size * 100)/100).toFixed(2)}</h4>
-          <hr style={{ marginTop: "20px" }} />
-          <FeeTable fee={fee} perks={perks} registrationYearDiscount={registrationYearDiscount} />
-        </Card.Body>
-        <Button onClick={() => handleCurrentPage("")} variant="success">
-          Atgal
-        </Button>
-      </Card>
-     
-    </div>
-    <div className='bottomPadding'> ‎</div>
+
+            <hr style={{ marginTop: "10px" }} />
+            <h4>CO<sub>2</sub> kiekis: {(Math.round(fee.c02size * 100) / 100).toFixed(2)}</h4>
+            <hr style={{ marginTop: "20px" }} />
+            <FeeTable fee={fee} perks={perks} registrationYearDiscount={registrationYearDiscount} />
+          </Card.Body>
+          <Button onClick={() => handleCurrentPage("")} variant="success">
+            Atgal
+          </Button>
+        </Card>
+
+      </div>
+      <div className='bottomPadding'> ‎</div>
     </div>
   );
 }
