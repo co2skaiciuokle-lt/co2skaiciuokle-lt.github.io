@@ -174,7 +174,7 @@ export default function DontKnows({ handleCurrentPage }) {
             <h2>Taršos mokesčio skaičiuoklė nežinant CO<sub>2</sub></h2>
           </Card.Title>
           <hr />
-          <p>Pasirinkite kuro rūšis :</p>
+          <p><b>Pasirinkite kuro rūšis :</b></p>
           <CheckBoxes handleFuelType={handleFuelType} />
           {fuelType.fuel !== null && (
             <div>
@@ -215,14 +215,14 @@ export default function DontKnows({ handleCurrentPage }) {
             </div>
           )}
           <hr />
-          <p>Pasirinkite automobilio Euro standartą :</p>
+          <p><b>Pasirinkite automobilio Euro standartą :</b></p>
           <div className={Styles.inputsaligncenter}>
             <Eurodropdown calculateEuro={calculateEuro} knowsEuro={SHOW_YEARS.YES} />
 
             {knowsEuro === "no" && (
               <>
                 <p className={Styles.askingYears}>
-                  Pasirinkite automobilio pagaminimo metus :
+                <b> Pasirinkite automobilio pagaminimo metus :</b>
                 </p>
                 <Eurodropdown
                   calculateEuro={calculateEuro1}
@@ -231,9 +231,9 @@ export default function DontKnows({ handleCurrentPage }) {
               </>
             )}
           </div>
-          <p>Pasirinkite lengvatą :</p>
+          <p><b>Pasirinkite lengvatą :</b></p>
             <CheckboxesPerks setPerks={setPerks} />
-            <p>Pasirinkite automobilio registravimo datą :</p>
+            <p><b>Pasirinkite automobilio registravimo datą :</b></p>
             <div className={Styles.inputsaligncenter}>
             <YearOfRegistrationDropdown setRegistrationYearDiscount={setRegistrationYearDiscount}/>
             </div>

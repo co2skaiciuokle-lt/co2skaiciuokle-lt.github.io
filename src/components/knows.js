@@ -115,18 +115,18 @@ export default function Knows({ handleCurrentPage }) {
               <h2>Taršos mokesčio skaičiuoklė žinant CO<sub>2</sub></h2>
             </Card.Title>
             <hr />
-            <p>Pasirinkite kuro rūšis :</p>
+            <p><b>Pasirinkite kuro rūšis :</b></p>
 
             <CheckBoxes handleFuelType={handleFuelType} />
             <hr />
-            <p>Pasirinkite Euro standartą ir  įveskite CO<sub>2</sub> :</p>
+            <p><b>Pasirinkite Euro standartą ir  įveskite CO<sub>2</sub> :</b></p>
             <div className={Styles.inputsaligncenter}>
               <Eurodropdown calculateEuro={calculateEuro} knowsEuro={SHOW_YEARS.YES} />
 
               {knowsEuro === "no" && (
                 <>
                   <p className={Styles.askingYears}>
-                    Pasirinkite automobilio pagaminimo metus :
+                   <b> Pasirinkite automobilio pagaminimo metus :</b>
                   </p>
                   <Eurodropdown
                     calculateEuro={calculateEuro1}
@@ -140,16 +140,16 @@ export default function Knows({ handleCurrentPage }) {
                 <input
                   className="form-control"
                   type="text"
-                  placeholder="CO2 išmetimo kiekis "
+                  placeholder="CO2 išmetimo kiekis. "
                   value={co2Amount}
                   onChange={(e) => handleAmount(e.target.value)}
                 />
                 <span class="input-group-text">g/km</span>
               </div>
             </Form.Group>
-            <p>Pasirinkite lengvatą :</p>
+            <p><b>Pasirinkite lengvatą :</b></p>
             <CheckboxesPerks setPerks={setPerks} />
-            <p>Pasirinkite automobilio registravimo datą :</p>
+            <p><b>Pasirinkite automobilio registravimo datą :</b></p>
             <div className={Styles.inputsaligncenter}>
             <YearOfRegistrationDropdown setRegistrationYearDiscount={setRegistrationYearDiscount}/>
             </div>

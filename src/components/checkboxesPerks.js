@@ -28,14 +28,14 @@ export default function CheckBoxesPerks({setPerks}) {
         <div className={Styles.boxesalignperks}>
         <Form.Check
           inline
-          label="Esu senjoras (65+ metai)"
+          label="Esu senjoras (65+ metai)."
           type="checkbox"
           onChange={() => calculatePerks()}
           id="65"
         />
         <Form.Check
           inline
-          label="Turiu šeimos kortelę"
+          label="Turiu šeimos kortelę."
           type="checkbox"
           onChange={() => calculatePerks()}
           id="familyCard"
