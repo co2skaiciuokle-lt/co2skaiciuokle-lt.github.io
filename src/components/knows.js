@@ -18,15 +18,15 @@ export default function Knows({ handleCurrentPage }) {
   const [co2Amount, setCo2Amount] = useState("");
   const [fee, setFee] = useState({ taxes: 0 });
   const [perks, setPerks] = useState(1)
-  const [registrationYearDiscount, setRegistrationYearDiscount] = useState(1)
+  const [registrationYearDiscount, setRegistrationYearDiscount] = useState("")
 
   useEffect(() => {
-    if (co2Amount && euro && fuelType) {
+    if (co2Amount && euro && fuelType && registrationYearDiscount) {
       setFee(calculateWithCO2(parseInt(co2Amount), parseInt(euro), fuelType));
     } else {
       setFee({ taxes: 0 });
     }
-  }, [co2Amount, euro, fuelType]);
+  }, [co2Amount, euro, fuelType,registrationYearDiscount]);
 
   const handleAmount = (data) => {
     const regex = /^[0-9]*$/;
@@ -150,7 +150,9 @@ export default function Knows({ handleCurrentPage }) {
             <p>Pasirinkite lengvatą</p>
             <CheckboxesPerks setPerks={setPerks} />
             <p>Pasirinkite automobilio registravimo datą</p>
+            <div className={Styles.inputsaligncenter}>
             <YearOfRegistrationDropdown setRegistrationYearDiscount={setRegistrationYearDiscount}/>
+            </div>
                
             <FeeTable fee={fee} perks={perks} registrationYearDiscount={registrationYearDiscount} />
 

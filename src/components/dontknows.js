@@ -22,11 +22,11 @@ export default function DontKnows({ handleCurrentPage }) {
   const [weight, setWeight] = useState("");
   const [kw, setKw] = useState("");
   const [perks, setPerks] = useState(1)
-  const [registrationYearDiscount, setRegistrationYearDiscount] = useState(1)
+  const [registrationYearDiscount, setRegistrationYearDiscount] = useState("")
   const regex = /^[0-9]*$/;
   
   useEffect(() => {
-    if (weight && euro && manual !== "") {
+    if (weight && euro && manual !== "" && registrationYearDiscount) {
       setFee(
         calculatewithoutCO2(
           parseInt(weight),
@@ -36,7 +36,7 @@ export default function DontKnows({ handleCurrentPage }) {
           Boolean(parseInt(manual))
         )
       );
-    } else if (weight && euro && fuelType.isElectric) {
+    } else if (weight && euro && fuelType.isElectric && registrationYearDiscount) {
       setFee(
         calculatewithoutCO2(
           parseInt(weight),
@@ -49,7 +49,7 @@ export default function DontKnows({ handleCurrentPage }) {
     } else {
       setFee({ taxes: 0, c02size: 0 });
     }
-  }, [weight, kw, euro, fuelType, manual]);
+  }, [weight, kw, euro, fuelType, manual,registrationYearDiscount]);
 
   const handleWeight = (data) => {
     if (regex.test(data)) {
@@ -234,10 +234,10 @@ export default function DontKnows({ handleCurrentPage }) {
           <p>Pasirinkite lengvatą</p>
             <CheckboxesPerks setPerks={setPerks} />
             <p>Pasirinkite automobilio registravimo datą</p>
+            <div className={Styles.inputsaligncenter}>
             <YearOfRegistrationDropdown setRegistrationYearDiscount={setRegistrationYearDiscount}/>
+            </div>
                
-            
-
           <hr style={{ marginTop: "10px" }} />
           <h4>CO<sub>2</sub> kiekis: {(Math.round(fee.c02size * 100)/100).toFixed(2)}</h4>
           <hr style={{ marginTop: "20px" }} />
