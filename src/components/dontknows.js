@@ -233,7 +233,7 @@ export default function DontKnows({ handleCurrentPage }) {
           </div>
           <p><b>Pasirinkite lengvatą :</b></p>
             <CheckboxesPerks setPerks={setPerks} />
-            <p><b>Pasirinkite automobilio registravimo datą :</b></p>
+            <p><b>Pasirinkite automobilio pirmos registracijos datą :</b></p>
             <div className={Styles.inputsaligncenter}>
             <YearOfRegistrationDropdown setRegistrationYearDiscount={setRegistrationYearDiscount}/>
             </div>
