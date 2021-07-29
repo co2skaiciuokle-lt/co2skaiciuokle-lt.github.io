@@ -52,17 +52,22 @@ export default function DontKnows({ handleCurrentPage }) {
   }, [weight, kw, euro, fuelType, manual, registrationYearDiscount]);
 
   const handleWeight = (data) => {
-    if (regex.test(data)) {
-      setWeight(data);
-    } else if (data === "") {
+    if (regex.test(data)) 
+    {
+      data<10000000?setWeight(data):setWeight(10000000)
+    } 
+    else if (data === "") {
       setWeight("");
     }
   };
 
   const handleKw = (data) => {
     if (regex.test(data)) {
-      setKw(data);
-    } else if (data === "") {
+  
+      data<10000000?setKw(data):setKw(10000000)
+      
+    } 
+    else if (data === "") {
       setKw("");
     }
   };

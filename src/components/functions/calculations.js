@@ -3,15 +3,14 @@ const FUEL_Types = {
     GAS: "gas",
     GASOLINE: "gasoline",
 };
-let taxes
 export function calculateWithCO2(co2, euro, fuelType) {
-    taxes = calculateFee(co2, euro, fuelType);
+   const taxes = calculateFee(co2, euro, fuelType);
 
     return { taxes }
 }
 
 export function calculatewithoutCO2(weigth, kw, euro, fuelType, isManual) {
-    taxes = calculateFee(
+   const taxes = calculateFee(
         calculateAproxCO2(weigth, kw, fuelType, isManual),
         euro,
         fuelType
@@ -58,24 +57,16 @@ function calculateFee(co2, euro, fuelType) {
     return {
         registrationCost: co2 *
             calculateCoeffOfEuroCO2(co2).registrationCoeff *
-            calculateCoeffOfEuro(euro, fuelType) >
-            2258 ?
-            2258 : co2 * calculateCoeffOfEuroCO2(co2).registrationCoeff * calculateCoeffOfEuro(euro, fuelType),
+            calculateCoeffOfEuro(euro, fuelType),
         yearsCost: co2 *
             calculateCoeffOfEuroCO2(co2).yearsCoeff *
-            calculateCoeffOfEuro(euro, fuelType) >
-            564 ?
-            564 : co2 * calculateCoeffOfEuroCO2(co2).yearsCoeff * calculateCoeffOfEuro(euro, fuelType),
+            calculateCoeffOfEuro(euro, fuelType),
         y2026registrationCost: co2 *
             calculateCoeffOfEuroCO2(co2).y2026registrationCoeff *
-            calculateCoeffOfEuro(euro, fuelType) >
-            2258 ?
-            2258 : co2 * calculateCoeffOfEuroCO2(co2).y2026registrationCoeff * calculateCoeffOfEuro(euro, fuelType),
+            calculateCoeffOfEuro(euro, fuelType),
         y2026yearsCost: co2 *
             calculateCoeffOfEuroCO2(co2).y2026yearsCoeff *
-            calculateCoeffOfEuro(euro, fuelType) >
-            564 ?
-            564 : co2 * calculateCoeffOfEuroCO2(co2).y2026yearsCoeff * calculateCoeffOfEuro(euro, fuelType),
+            calculateCoeffOfEuro(euro, fuelType),
     }
 }
 

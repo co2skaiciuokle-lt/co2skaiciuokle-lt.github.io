@@ -31,7 +31,9 @@ export default function Knows({ handleCurrentPage }) {
   const handleAmount = (data) => {
     const regex = /^[0-9]*$/;
     if (regex.test(data)) {
-      setCo2Amount(data);
+       data<10000000?setCo2Amount(data):setCo2Amount(10000000)
+
+      
     } else if (data === "") {
       setCo2Amount("");
     }
@@ -138,6 +140,7 @@ export default function Knows({ handleCurrentPage }) {
             <Form.Group className={Styles.alignco2}>
               <div class="input-group input-group-sm mb-3">
                 <input
+                  
                   className="form-control"
                   type="text"
                   placeholder="CO2 išmetimo kiekis. "
