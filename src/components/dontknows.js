@@ -22,11 +22,10 @@ export default function DontKnows({ handleCurrentPage }) {
   const [weight, setWeight] = useState("");
   const [kw, setKw] = useState("");
   const [perks, setPerks] = useState(1)
-  const [registrationYearDiscount, setRegistrationYearDiscount] = useState("")
   const regex = /^[0-9]*$/;
 
   useEffect(() => {
-    if (weight && euro && manual !== "" && registrationYearDiscount) {
+    if (weight && euro && manual !== "" ) {
       setFee(
         calculatewithoutCO2(
           parseInt(weight),
@@ -36,7 +35,7 @@ export default function DontKnows({ handleCurrentPage }) {
           Boolean(parseInt(manual))
         )
       );
-    } else if (weight && euro && fuelType.isElectric && registrationYearDiscount) {
+    } else if (weight && euro && fuelType.isElectric ) {
       setFee(
         calculatewithoutCO2(
           parseInt(weight),
@@ -49,7 +48,7 @@ export default function DontKnows({ handleCurrentPage }) {
     } else {
       setFee({ taxes: 0, c02size: 0 });
     }
-  }, [weight, kw, euro, fuelType, manual, registrationYearDiscount]);
+  }, [weight, kw, euro, fuelType, manual]);
 
   const handleWeight = (data) => {
     if (regex.test(data)) 
@@ -236,17 +235,14 @@ export default function DontKnows({ handleCurrentPage }) {
                 </>
               )}
             </div>
-            <p><b>Pasirinkite automobilio pirmos registracijos datą :</b></p>
-            <div className={Styles.inputsaligncenter}>
-              <YearOfRegistrationDropdown setRegistrationYearDiscount={setRegistrationYearDiscount} />
-            </div>
+           
             <p><b>Pasirinkite lengvatą :</b></p>
             <CheckboxesPerks setPerks={setPerks} />
 
             <hr style={{ marginTop: "10px" }} />
             <h4>CO<sub>2</sub> kiekis: {(Math.round(fee.c02size * 100) / 100).toFixed(2)}</h4>
             <hr style={{ marginTop: "20px" }} />
-            <FeeTable fee={fee} perks={perks} registrationYearDiscount={registrationYearDiscount} />
+            <FeeTable fee={fee} perks={perks} />
           </Card.Body>
           <Button onClick={() => handleCurrentPage("")} variant="success">
             Atgal

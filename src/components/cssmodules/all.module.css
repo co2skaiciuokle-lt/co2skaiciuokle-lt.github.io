@@ -34,15 +34,27 @@ input[type='checkbox'] {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+    text-align: left;
 }
 
-.boxesalign div,.boxesalignperks div {
+.boxesalign div {
     display: flex;
     align-items: center;
+    cursor: pointer;
+
+}
+.boxesalignperks div {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+
 }
 
 .boxesalignperks div{
     margin-bottom: 2rem;
+}
+.boxesalignperks div label{
+    max-width: 95% !important;
 }
 
 .inputsaligncenter {
